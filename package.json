@@ -1,0 +1,27 @@
+{
+  "name": "c_trainingnodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "node dist/index.js",
+    "dev": "nodemon index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "ffi-napi": "^4.0.3",
+    "ref-napi": "^3.0.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/ffi-napi": "^4.0.10",
+    "@types/node": "^20.14.11",
+    "@types/ref-napi": "^3.0.12",
+    "typescript": "^5.5.3"
+  }
+}

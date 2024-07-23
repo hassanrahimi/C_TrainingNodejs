@@ -21,7 +21,10 @@ app.get("/", (req: Request, res: Response) => {
 
 
 
-const plateformLib=process.platform === 'win32' ? './example.dll' : "./example.so";
+//gcc -shared -o example.dll -fPIC example.c `pkg-config --cflags --libs gstreamer-1.0`
+
+//gcc -shared -o example.so -fPIC example.c `pkg-config --cflags --libs gstreamer-1.0`
+const plateformLib=process.platform === 'win32' ? 'example.dll' : "example.so";
 const libpath = path.resolve(__dirname, plateformLib);
 const lib = koffi.load(libpath);
 
@@ -40,8 +43,12 @@ app.get("/koffireset", (req: Request, res: Response) => {
     res.send("Express + TypeScript Server");
 });
 
+
+//gcc -shared -o mixing.dll -fPIC mixing.c `pkg-config --cflags --libs gstreamer-1.0`
+
+//gcc -shared -o mixing.so -fPIC mixing.c `pkg-config --cflags --libs gstreamer-1.0`
 app.get("/createpipeline", (req: Request, res: Response) => {
-    const plateformLibMix=process.platform === 'win32' ? './mixing.dll' : "./mixing.so";
+    const plateformLibMix=process.platform === 'win32' ? 'mixing.dll' : "mixing.so";
     const libpath = path.resolve(__dirname, plateformLibMix);
     const lib = koffi.load(libpath);
     const createPipline = lib.func('int createPipline(string)');

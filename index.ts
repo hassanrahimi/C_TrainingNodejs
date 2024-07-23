@@ -21,8 +21,8 @@ app.get("/", (req: Request, res: Response) => {
 
 
 
-
-const libpath = path.resolve(__dirname, "./example.dll");
+const plateformLib=process.platform === 'win32' ? './example.dll' : "./example.so";
+const libpath = path.resolve(__dirname, plateformLib);
 const lib = koffi.load(libpath);
 
 // Define the function signatures
@@ -41,7 +41,8 @@ app.get("/koffireset", (req: Request, res: Response) => {
 });
 
 app.get("/createpipeline", (req: Request, res: Response) => {
-    const libpath = path.resolve(__dirname, "./mixing.dll");
+    const plateformLibMix=process.platform === 'win32' ? './mixing.dll' : "./mixing.so";
+    const libpath = path.resolve(__dirname, plateformLibMix);
     const lib = koffi.load(libpath);
     const createPipline = lib.func('int createPipline(string)');
     createPipline("newPipeline");

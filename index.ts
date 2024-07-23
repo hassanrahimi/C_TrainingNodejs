@@ -26,6 +26,8 @@ app.get("/", (req: Request, res: Response) => {
 //gcc -shared -o example.so -fPIC example.c `pkg-config --cflags --libs gstreamer-1.0`
 const plateformLib=process.platform === 'win32' ? 'example.dll' : "example.so";
 const libpath = path.resolve(__dirname, plateformLib);
+console.log(libpath);
+
 const lib = koffi.load(libpath);
 
 // Define the function signatures
